@@ -1,0 +1,8 @@
+{
+  "name": "キッチンタイマー",
+  "short_name": "タイマー",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8ef",
+  "theme_color": "#ff6b6b"
+}

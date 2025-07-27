@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キッチンタイマー</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+    </head><body class="light">
+    <h1>🍳 キッチンタイマー</h1>
+    <button id="toggle-settings">⚙️ 設定</button>
+    <div id="settings-panel" style="display:none;">
+      <label><input type="checkbox" id="vibrate-only"> 🔇 音なしで振動のみ</label><br>
+      <label>🎨 背景テーマ：
+        <select id="theme-select">
+          <option value="light">明るい</option>
+          <option value="dark">暗い</option>
+        </select>
+      </label><br>
+      <button id="reset-all">🧼 全リセット</button>
+      <h3>⏱ タイマー設定</h3>
+      <div id="custom-times"></div>
+      <button id="apply-times">✔️ 更新して適用</button>
+    </div>
+    <div id="timer-bars"></div>
+    <script src="script.js"></script></body></html>
+    
