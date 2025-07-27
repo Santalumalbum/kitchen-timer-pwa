@@ -4,7 +4,7 @@ function playAlert() {
   const vibrateOnly = document.getElementById("vibrate-only").checked;
 
   if (vibrateOnly && navigator.vibrate) {
-    navigator.vibrate([400, 100, 400]);
+    navigator.vibrate([200, 100, 200]);
     return;
   }
 
@@ -12,18 +12,20 @@ function playAlert() {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const now = audioCtx.currentTime;
 
-    const osc = audioCtx.createOscillator();
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(150, now);
-    osc.frequency.linearRampToValueAtTime(80, now + 2);
+    for (let i = 0; i < 3; i++) {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
 
-    const gain = audioCtx.createGain();
-    gain.gain.setValueAtTime(0.3, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 2);
+      osc.type = 'square'; // ピッとした音
+      osc.frequency.setValueAtTime(1200, now + i * 0.3);
 
-    osc.connect(gain).connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 2);
+      gain.gain.setValueAtTime(0.3, now + i * 0.3);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.3 + 0.2);
+
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(now + i * 0.3);
+      osc.stop(now + i * 0.3 + 0.2);
+    }
   } catch (e) {
     console.warn("AudioContextエラー:", e);
   }
